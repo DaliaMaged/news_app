@@ -33,16 +33,18 @@ static Future<NewsBySource?> getNewsBySourceId({required String sourceId}) async
      throw e;
   }
 }
-static Future<NewsBySource?> getNewsBySourceIdInSearch({required String sourceId,required String q}) async{
+static Future<NewsBySource?> getNewsBySourceIdInSearch({required String q}) async{
+
     Uri url = Uri.https(ApiConstants.baseUrl,ApiConstants.topicsApi,{
       "q" : q,
       "apiKey" : ApiConstants.api_key,
-      "sources" : sourceId,
+     // "sources" : sourceId,
     });
+    print("$url");
     try{
     var responseString = await http.get(url);
     var responseJson = jsonDecode(responseString.body);
-   // print(responseJson);
+    print(responseJson);
     return NewsBySource.fromJson(responseJson);
   } catch (e){
      throw e;
