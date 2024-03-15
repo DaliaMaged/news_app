@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_debouncer/flutter_debouncer.dart';
+//import 'package:flutter_debouncer/flutter_debouncer.dart';
 import 'package:news_app/AppTheme.dart';
 import 'package:news_app/models/NewsBySource.dart';
 
 import '../api/api-manager.dart';
 
 class CustomeSearchDelegate extends SearchDelegate<Articles>{
- // String? sourceId;
+  // Debouncer _debouncer = Debouncer();
+  // String? sourceId;
  // CustomeSearchDelegate({required sourceId});
   @override
   TextInputAction get textInputAction => super.textInputAction;
@@ -28,7 +29,6 @@ class CustomeSearchDelegate extends SearchDelegate<Articles>{
 
   @override
   Widget buildResults(BuildContext context) {
-    print("buildResults");
     // List<Articles> articlesResults = searchList
     //     .where((item) => item.toLowerCase().contains(query.toLowerCase()))
     //     .toList();
@@ -63,25 +63,42 @@ class CustomeSearchDelegate extends SearchDelegate<Articles>{
           ],
         );
       }else {
-        return Expanded(
-          child: ListView.builder(itemBuilder: (context,index){
-            return
-              // InkWell(
-              //   onTap: (){
-              //     Navigator.pushNamed(context, FullDetailArticleScreen.fullDetailArticleScreen,
-              //         arguments: snapShot.data!.articles![index]
-              //     );
-              //   },child:
-            Text("${snapShot.data!.articles![index].title}",style: TextStyle(color: NewsTheme.darkGreyColor),);
-          },
-            itemCount:snapShot.data?.articles?.length ,
+        return Container(
+          color: NewsTheme.primaryColor,
+          child: Expanded(
+            child: ListView.builder(itemBuilder: (context,index){
+              return
+                // InkWell(
+                //   onTap: (){
+                //     Navigator.pushNamed(context, FullDetailArticleScreen.fullDetailArticleScreen,
+                //         arguments: snapShot.data!.articles![index]
+                //     );
+                //   },child:
+              Container(
+                margin: EdgeInsets.all(8),
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: NewsTheme.whiteColor,
+                    borderRadius: BorderRadius.circular(15)
+                  ),
+                  child: Text("${snapShot.data!.articles![index].title}",style: TextStyle(color: NewsTheme.primaryColor),));
+            },
+              itemCount:snapShot.data?.articles?.length ,
+            ),
           ),
         );
       }
     }
     );
   }
-
+  //
+  // void _handleTextFieldChange(String value,BuildContext context) {
+  //   if (_debouncer.isActive ?? false) _debouncer.cancel();
+  //   _debouncer = Timer(const Duration(milliseconds: 500), () {
+  //     // Start playing song here
+  //     print("Song playing");
+  //   });
+ // }
   @override
   Widget buildSuggestions(BuildContext context) {
     return Container(
