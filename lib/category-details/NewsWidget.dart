@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/api/api-manager.dart';
+import 'package:news_app/category-details/FullDetailArticleScreen.dart';
 import 'package:news_app/category-details/NewsDetailsScreen.dart';
 import 'package:news_app/models/NewsBySource.dart';
 
@@ -49,7 +50,13 @@ class _NewsWidgetState extends State<NewsWidget> {
       }else {
         return Expanded(
           child: ListView.builder(itemBuilder: (context,index){
-            return NewDetailsWidget(articles: snapShot.data!.articles![index]);
+            return InkWell(
+                onTap: (){
+                  Navigator.pushNamed(context, FullDetailArticleScreen.fullDetailArticleScreen,
+                  arguments: snapShot.data!.articles![index]
+                  );
+                },
+                child: NewDetailsWidget(articles: snapShot.data!.articles![index]));
           },
           itemCount:snapShot.data?.articles?.length ,
           ),

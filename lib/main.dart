@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/AppTheme.dart';
 import 'package:news_app/HomeScreen.dart';
 import 'package:news_app/categories/CategoriesScreen.dart';
+import 'package:news_app/category-details/FullDetailArticleScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       home: HomeScreen(),
       routes: {
         HomeScreen.homeScreen :(context)=> HomeScreen(),
+        FullDetailArticleScreen.fullDetailArticleScreen:(context) => FullDetailArticleScreen()
       //  CategoriesScreen.category_screen :(context)=> CategoriesScreen(),
       },
 
