@@ -19,12 +19,15 @@ static Future<SourcesResponse?> getSources(String category) async{
      throw e;
   }
 }
-static Future<NewsBySource?> getNewsBySourceId({required String sourceId}) async{
+static Future<NewsBySource?> getNewsBySourceId({required String sourceId,required int page,int pageSize=10}) async{
     Uri url = Uri.https(ApiConstants.baseUrl,ApiConstants.topicsApi,{
       "apiKey" : ApiConstants.api_key,
-      "sources" : sourceId
+      "sources" : sourceId,
+      "pageSize" : pageSize.toString(),
+      "page":page.toString()
     });
     try{
+      print(url);
     var responseString = await http.get(url);
     var responseJson = jsonDecode(responseString.body);
    // print(responseJson);
