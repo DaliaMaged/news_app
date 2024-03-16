@@ -27,12 +27,12 @@ class _HomeScreenState extends State<HomeScreen> {
         Scaffold(
           appBar: AppBar(
             title: Text("News App"),
-            leading: IconButton(onPressed: () {
+            actions: [IconButton(onPressed: () {
               showSearch(context: context, delegate: CustomeSearchDelegate());
             },
               alignment: Alignment.centerRight,
             icon: Icon(Icons.search,color: NewsTheme.whiteColor,),
-            ),
+            )],
           ),
           drawer: Drawer(
             child: DrawerWidget(onItemSelected: onItemSelected),

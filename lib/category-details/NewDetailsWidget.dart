@@ -32,8 +32,10 @@ class _NewDetailsWidgetState extends State<NewDetailsWidget> {
           fit: BoxFit.fitWidth,
           imageUrl: '${widget.articles.urlToImage}',
             placeholder: (context, url) => Center(
-              child: CircularProgressIndicator(
-                color: NewsTheme.primaryColor,
+              child: Center(
+                child: CircularProgressIndicator(
+                  color: NewsTheme.primaryColor,
+                ),
               ),
             ),
             errorWidget: (context,url,error)=> Icon(Icons.error),

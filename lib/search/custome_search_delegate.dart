@@ -15,7 +15,9 @@ class CustomeSearchDelegate extends SearchDelegate<Articles>{
   @override
   List<Widget>? buildActions(BuildContext context) {
    return[
-     IconButton(onPressed: (){}, icon: Icon(Icons.clear,color: NewsTheme.lighterGreyColor,))
+     IconButton(onPressed: (){
+       query = "";
+     }, icon: Icon(Icons.clear,color: NewsTheme.lighterGreyColor,))
    ];
   }
 
@@ -35,8 +37,10 @@ class CustomeSearchDelegate extends SearchDelegate<Articles>{
     return FutureBuilder<NewsBySource?>(future: ApiManager.getNewsBySourceIdInSearch(q:query.toString()), builder:
         (context,snapShot){
       if(snapShot.connectionState==ConnectionState.waiting){
-        return CircularProgressIndicator(
-          color: NewsTheme.primaryColor,
+        return Center(
+          child: CircularProgressIndicator(
+            color: NewsTheme.whiteColor,
+          ),
         );
       }else if(
       snapShot.hasError
@@ -102,7 +106,7 @@ class CustomeSearchDelegate extends SearchDelegate<Articles>{
   @override
   Widget buildSuggestions(BuildContext context) {
     return Container(
-      color: NewsTheme.whiteColor,
+      color: NewsTheme.primaryColor,
     );
   }
   

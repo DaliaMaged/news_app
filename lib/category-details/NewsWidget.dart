@@ -40,8 +40,10 @@ class _NewsWidgetState extends State<NewsWidget> {
             sourceId: widget.sourceId, page: widget.page),
         builder: (context, snapShot) {
           if (snapShot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator(
-              color: NewsTheme.primaryColor,
+            return Center(
+              child: CircularProgressIndicator(
+                color: NewsTheme.primaryColor,
+              ),
             );
           } else if (snapShot.hasError) {
             return Column(

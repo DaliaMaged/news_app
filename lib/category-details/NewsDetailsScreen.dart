@@ -20,8 +20,10 @@ class _NewsDetailsScreenState extends State<NewsDetailsScreen> {
         future: ApiManager.getSources(widget.categoryModel.title),
         builder: (context, snapShot) {
           if (snapShot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator(
-              color: NewsTheme.primaryColor,
+            return Center(
+              child: CircularProgressIndicator(
+                color: NewsTheme.primaryColor,
+              ),
             );
           } else if (snapShot.hasError) {
             return Column(

@@ -35,7 +35,7 @@ class _TabsWidgetState extends State<TabsWidget> {
             indicatorColor: Colors.transparent,
 
           ),
-          NewsWidget(widget.sourcesList[widget.currentSelected].id ?? "")
+          Expanded(child: NewsWidget(widget.sourcesList[widget.currentSelected].id ?? ""))
         ],
       ),
       // )
